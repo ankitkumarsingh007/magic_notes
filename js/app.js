@@ -38,7 +38,24 @@
                     <div class="card-body">
                         <h5 id="card-title">${element.title}</h5>
                         <p class="cardTxt"> ${element.text}</p>
-                        <button id="${index}"onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Delete Note
+</button>
+
+<div class="modal fade additional" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Do you want to delete it?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" id="${index}" onclick="deleteNote(this.id)" data-dismiss="modal" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
                     </div>
                 </div>`;
      });
@@ -50,7 +67,6 @@
      }
  }
 
- // Function to delete a note
  function deleteNote(index) {
      let notes = localStorage.getItem("notes");
      if (notes == null) {
